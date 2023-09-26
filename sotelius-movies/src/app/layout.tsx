@@ -3,9 +3,8 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 // app/layout.tsx
 import { Providers } from "./providers";
-import App from "next/app";
 import React from "react";
-import Navbarr from "../components/navbar";
+import Navbar from "../components/navbar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,7 +22,7 @@ export default function RootLayout({
     <html lang='en'>
       <body className={inter.className}>
         <Providers>
-          <Navbarr />
+          <Navbar />
           {children}
         </Providers>
       </body>

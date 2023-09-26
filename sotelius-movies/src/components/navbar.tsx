@@ -1,7 +1,6 @@
-"use client";
 import React from "react";
 import Link from "next/link";
-export default function Navbarr() {
+export default function Navbar() {
   return (
     <div className='navbar bg-base-100 sticky top-0' style={{ zIndex: 1000 }}>
       <div className='navbar-start'>
