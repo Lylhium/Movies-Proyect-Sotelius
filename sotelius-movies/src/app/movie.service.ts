@@ -8,7 +8,7 @@ export const getTrendingMovies = async () => {
       `${BASE_URL}/trending/movie/day?language=en-US&api_key=${API_KEY}`
     );
     const data = await res.json();
-    console.log("Trending Movies Data:", data); // Add this line
+
     return data.results;
   } catch (error) {
     console.error("Error fetching trending movies:", error);

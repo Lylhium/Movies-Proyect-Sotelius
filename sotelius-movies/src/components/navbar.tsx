@@ -10,7 +10,7 @@ import {
   Button,
   Input,
 } from "@nextui-org/react";
-import { AcmeLogo } from "./AcmeLogo.jsx";
+import { AcmeLogo } from "../components/Acmelogo";
 
 export default function Navbarr() {
   return (

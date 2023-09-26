@@ -3,18 +3,15 @@ import React from "react";
 export const SearchIcon = ({
   size = 24,
   strokeWidth = 1.5,
-  width,
-  height,
+
   ...props
 }) => (
   <svg
     aria-hidden='true'
     fill='none'
     focusable='false'
-    height={height || size}
     role='presentation'
     viewBox='0 0 24 24'
-    width={width || size}
     {...props}
   >
     <path
