@@ -1,26 +1,17 @@
-import axios from "axios";
-
 const API_KEY = "77f3cadb497722d6b57cf23f4e4c2032";
 
-const API_BASE_URL = "https://api.themoviedb.org/3";
+const BASE_URL = "https://api.themoviedb.org/3";
 
-const client = axios.create({
-  baseURL: API_BASE_URL,
-  params: { api_key: API_KEY },
-});
-
-export const searchMovies = async (query: string) => {
+export const getTrendingMovies = async () => {
   try {
-    const response = await client.get("/search/movie", {
-      params: { query },
-    });
-    if (response.data && response.data.results) {
-      return response.data.results;
-    } else {
-      console.error("error");
-    }
-  } catch (err) {
-    console.log(err);
+    const res = await fetch(
+      `${BASE_URL}/trending/movie/day?language=en-US&api_key=${API_KEY}`
+    );
+    const data = await res.json();
+    console.log("Trending Movies Data:", data); // Add this line
+    return data.results;
+  } catch (error) {
+    console.error("Error fetching trending movies:", error);
     return [];
   }
 };
