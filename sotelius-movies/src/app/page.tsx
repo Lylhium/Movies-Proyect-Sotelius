@@ -18,10 +18,11 @@ export default function Home() {
     <main className='flex min-h-screen flex-col items-center justify-between p-24'>
       <h1>Home landing</h1>
       <div>Top trending movies</div>
-
-      {movies.map((movie) => (
-        <CardUI key={movie.id} movie={movie}></CardUI>
-      ))}
+      <div className='d-flex flex-wrap gap-3'>
+        {movies.map((movie) => (
+          <CardUI key={movie.id} movie={movie}></CardUI>
+        ))}
+      </div>
     </main>
   );
 }
