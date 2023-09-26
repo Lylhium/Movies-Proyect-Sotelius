@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { getTrendingMovies } from "./movie.service";
-
+import CardUI from "../components/card";
 export default function Home() {
   const [movies, setMovies] = useState<any[]>([]);
 
@@ -18,8 +18,9 @@ export default function Home() {
     <main className='flex min-h-screen flex-col items-center justify-between p-24'>
       <h1>Home landing</h1>
       <div>Top trending movies</div>
+
       {movies.map((movie) => (
-        <div key={movie.id}>{movie.title}</div>
+        <CardUI key={movie.id} movie={movie}></CardUI>
       ))}
     </main>
   );
