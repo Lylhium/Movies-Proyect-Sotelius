@@ -16,9 +16,9 @@ export default function Home() {
 
   return (
     <main className='flex min-h-screen flex-col items-center justify-between p-24'>
-      <h1>Home landing</h1>
-      <div>Top trending movies</div>
-      <div className='d-flex flex-wrap gap-3'>
+      <div className='card-title'> Top Trending Movies </div>
+
+      <div className='flex flex-wrap justify-center gap-3'>
         {movies.map((movie) => (
           <CardUI key={movie.id} movie={movie}></CardUI>
         ))}
