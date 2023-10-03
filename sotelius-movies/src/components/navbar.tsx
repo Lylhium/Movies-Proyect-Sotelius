@@ -1,6 +1,15 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
 import Link from "next/link";
+
 export default function Navbar() {
+  const [isSearchOpen, setSearchOpen] = useState(false);
+
+  const toggleSearch = () => {
+    setSearchOpen(!isSearchOpen);
+  };
+
   return (
     <div className='navbar bg-base-100 sticky top-0' style={{ zIndex: 1000 }}>
       <div className='navbar-start'>
@@ -43,12 +52,16 @@ export default function Navbar() {
           </ul>
         </div>
       </div>
-      <div className='navbar-center'>
-        <a className='btn btn-ghost normal-case text-xl'>Sotelius Movies</a>
-      </div>
+      <Link href='/'>
+        <div className='navbar-center'>
+          <a className='btn btn-ghost normal-case text-xl'>
+            🎬 Sotelius Movies
+          </a>
+        </div>
+      </Link>
       <div className='navbar-end'>
         {/* Botón de búsqueda */}
-        <button className='btn btn-ghost btn-circle'>
+        <button className='btn btn-ghost btn-circle' onClick={toggleSearch}>
           <svg
             xmlns='http://www.w3.org/2000/svg'
             className='h-5 w-5'
@@ -64,6 +77,17 @@ export default function Navbar() {
             />
           </svg>
         </button>
+
+        {/* Campo de búsqueda */}
+        {isSearchOpen && (
+          <div className='relative'>
+            <input
+              type='text'
+              placeholder='Buscar...'
+              className='input input-bordered w-48 pl-10 pr-5'
+            />
+          </div>
+        )}
       </div>
     </div>
   );

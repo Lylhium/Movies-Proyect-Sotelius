@@ -15,3 +15,9 @@ export const getTrendingMovies = async () => {
     return [];
   }
 };
+
+export const getMovieDetails = async (id: any) => {
+  const res = await fetch(`${BASE_URL}/movie/${id}?api_key=${API_KEY}`);
+  const data = await res.json();
+  return data;
+};
