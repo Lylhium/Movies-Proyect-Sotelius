@@ -1,20 +1,29 @@
 import React from "react";
 import Link from "next/link";
-export default function App({ movie }: any) {
+
+export default function MovieCard({ movie }: any) {
   const IMG_BASE_URL = "https://www.themoviedb.org/t/p/w220_and_h330_face";
 
   return (
-    <div className='card w-96 bg-base-100 shadow-xl'>
+    <div className='max-w-xs mx-auto bg-white shadow-lg rounded-lg overflow-hidden'>
       <Link href={"/movie/" + movie.id}>
         <figure>
-          <img src={IMG_BASE_URL + movie.poster_path} alt='movie' />
+          <img
+            src={IMG_BASE_URL + movie.poster_path}
+            alt={movie.title}
+            className='w-full h-auto'
+          />
         </figure>
-        <div className='card-body'>
-          <h2 className='card-title'>{movie.title}</h2>
-          <p>{movie.overview}</p>
-          <div className='card-actions justify-end'>
-            <button className='btn btn-primary'>see more info.</button>
-          </div>
+        <div className='p-4'>
+          <h2 className='text-lg font-semibold mb-2'>{movie.title}</h2>
+          <p className='text-gray-600 text-sm'>{movie.overview}</p>
+        </div>
+        <div className='p-4 text-center'>
+          <Link href={"/movie/" + movie.id} legacyBehavior>
+            <a className='bg-orange-500 hover:bg-orange-700 text-white py-2 px-4 rounded-full inline-block'>
+              Ver más
+            </a>
+          </Link>
         </div>
       </Link>
     </div>

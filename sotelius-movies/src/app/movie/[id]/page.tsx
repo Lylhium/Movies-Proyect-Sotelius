@@ -6,11 +6,14 @@ export default async function Home({ params }: any) {
 
   const movieDetails = await getMovieDetails(params.id);
 
+  console.log(movieDetails);
+
   return (
     <main className='flex min-h-screen flex-col items-center justify-between p-24 '>
       <div>
         <img src={IMG_BASE_URL + movieDetails.backdrop_path} />
         <h1>{movieDetails.title}</h1>
+        <div>{movieDetails.original_language}</div>
       </div>
     </main>
   );

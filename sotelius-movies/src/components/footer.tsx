@@ -14,10 +14,14 @@ function Footer() {
       <nav>
         <header className='footer-title'>About us</header>
         <Link href='https://github.com/Lylhium' legacyBehavior>
-          <a className='link link-hover'>Agustín Github</a>
+          <a className='link link-hover' target='_blank'>
+            Agustín Github
+          </a>
         </Link>
         <Link href='https://github.com/Ian-Saia' legacyBehavior>
-          <a className='link link-hover'>Ian Github</a>
+          <a className='link link-hover' target='_blank'>
+            Ian Github
+          </a>
         </Link>
       </nav>
       <nav>
@@ -26,7 +30,9 @@ function Footer() {
           href='https://github.com/Lylhium/Movies-Proyect-Sotelius'
           legacyBehavior
         >
-          <a className='link link-hover'>Project Repository</a>
+          <a className='link link-hover' target='_blank'>
+            Project Repository
+          </a>
         </Link>
       </nav>
     </footer>
