@@ -25,7 +25,7 @@ export default function Home() {
   if (isLoading) {
     return (
       <div
-        className='bg-black flex items-center justify-center min-h-screen'
+        className=' flex items-center justify-center min-h-screen'
         style={{ flexDirection: "column" }}
       >
         <span className='loading loading-spinner loading-lg'></span>
