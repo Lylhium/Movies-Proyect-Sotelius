@@ -55,7 +55,7 @@ export default function Navbar() {
       <Link href='/'>
         <div className='navbar-center'>
           <a className='btn btn-ghost normal-case text-xl'>
-            🎬 Sotelius Movies
+            🎬 <a className='text-orange-500'>Sotelius</a> Movies
           </a>
         </div>
       </Link>

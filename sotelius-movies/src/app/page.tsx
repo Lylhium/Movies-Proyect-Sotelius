@@ -5,15 +5,33 @@ import CardUI from "../components/card";
 
 export default function Home() {
   const [movies, setMovies] = useState<any[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     async function fetchTrendingMovies() {
-      const trendingMovies = await getTrendingMovies();
-      setMovies(trendingMovies);
+      try {
+        const trendingMovies = await getTrendingMovies();
+        setMovies(trendingMovies);
+      } catch (error) {
+        console.error("Error fetching trending movies:", error);
+      } finally {
+        setIsLoading(false);
+      }
     }
 
     fetchTrendingMovies();
   }, []);
+
+  if (isLoading) {
+    return (
+      <div
+        className='bg-black flex items-center justify-center min-h-screen'
+        style={{ flexDirection: "column" }}
+      >
+        <span className='loading loading-spinner loading-lg'></span>
+      </div>
+    );
+  }
 
   return (
     <main className='flex flex-col items-center justify-center min-h-screen p-6 bg-gray-100'>

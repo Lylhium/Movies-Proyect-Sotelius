@@ -6,7 +6,7 @@ function Footer() {
       <aside>
         <div className='text-5xl'>📽️</div>
         <p> made by</p>
-        <p className='font-bold'>
+        <p className='font-bold text-orange-500'>
           Ian & Agustín <br />
         </p>
       </aside>
