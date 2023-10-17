@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export default function MovieCard({ movie }: any) {
   const IMG_BASE_URL = "https://www.themoviedb.org/t/p/w220_and_h330_face";
-  const maxOverviewLength = 150; // Define your character limit
+  const maxOverviewLength = 150;
   const [showFullOverview, setShowFullOverview] = useState(false);
 
   const truncatedOverview =
@@ -12,7 +12,7 @@ export default function MovieCard({ movie }: any) {
       : movie.overview;
 
   return (
-    <div className='max-w-xs mx-auto bg-white shadow-lg rounded-lg overflow-hidden'>
+    <div className='max-w-xs mx-auto bg-base-100 shadow-lg rounded-lg overflow-hidden'>
       <Link href={"/movie/" + movie.id}>
         <figure>
           <img
@@ -23,8 +23,13 @@ export default function MovieCard({ movie }: any) {
         </figure>
       </Link>
       <div className='p-4'>
-        <h2 className='text-lg font-semibold mb-2'>{movie.title}</h2>
-        <p className='text-gray-600 text-sm'>
+        <div className='text-lg font-semibold mb-2'>
+          {movie.title}{" "}
+          <a className='text-gray-400 text-sm'>
+            ({new Date(movie.release_date).getFullYear()})
+          </a>
+        </div>
+        <p className='normal-case text-sm text-base-content'>
           {showFullOverview ? movie.overview : truncatedOverview}
         </p>
         {movie.overview.length > maxOverviewLength &&
@@ -38,7 +43,7 @@ export default function MovieCard({ movie }: any) {
           ) : (
             <button
               onClick={() => setShowFullOverview(true)}
-              className='text-orange-500 hover:underline cursor-pointer'
+              className='text-orange-500 hover:underline cursor-pointer '
             >
               Ver más
             </button>

@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faStar } from "@fortawesome/free-solid-svg-icons";
+import { faStar, faThumbsUp } from "@fortawesome/free-solid-svg-icons";
 import { getMovieDetails } from "@/app/movie.service";
 
 const IMG_BASE_URL = "https://www.themoviedb.org/t/p/original";
@@ -20,8 +20,12 @@ const MovieDetailsComponent = ({ movie }: { movie: any }) => {
         </div>
         <div className='md:w-1/2'>
           <h1 className='text-4xl font-bold mb-4 md:text-2xl md:mb-2'>
-            {movie.title}
+            {movie.title}{" "}
+            <a className='text-gray-400 text-sm '>
+              ({new Date(movie.release_date).getFullYear()})
+            </a>
           </h1>
+
           <h2 className='text-2xl text-gray-300 mb-4 md:text-xl md:mb-2'>
             {movie.tagline}
           </h2>
@@ -30,32 +34,54 @@ const MovieDetailsComponent = ({ movie }: { movie: any }) => {
           </p>
           <div className='grid grid-cols-2 gap-4'>
             <div>
-              <strong className='text-lg md:text-base'>Genres:</strong>
+              <strong className='text-lg md:text-base'>Genres: </strong>
               <p className='text-lg text-gray-200 md:text-base'>
                 {movie.genres.map((genre: any) => (
-                  <span className='inline-block bg-orange-500 text-white px-2 py-1 rounded-lg mr-2'>
+                  <span
+                    className='inline-block bg-gradient-to-r from-orange-600 to-transparent text-white px-3 py-1 rounded-lg mr-2'
+                    key={genre.id}
+                  >
                     {genre.name}
                   </span>
                 ))}
               </p>
             </div>
             <div>
-              <strong className='text-lg md:text-base'>Release Date:</strong>
+              <strong className='text-lg md:text-base'>Release Date: </strong>
               <p className='text-lg text-gray-200 md:text-base'>
                 {movie.release_date}
               </p>
             </div>
             <div>
-              <strong className='text-lg md:text-base'>Runtime:</strong>
+              <strong className='text-lg md:text-base'>Runtime: </strong>
               <p className='text-lg text-gray-200 md:text-base'>
                 {movie.runtime} minutes
               </p>
             </div>
             <div>
-              <strong className='text-lg md:text-base'>Vote Average:</strong>
+              <strong className='text-lg md:text-base'>Votes: </strong>
+              <strong className='text-lg md:text-base'>
+                <FontAwesomeIcon icon={faThumbsUp} /> {movie.vote_count}
+              </strong>
+            </div>
+            <div>
+              <strong className='text-lg md:text-base'>Vote Average: </strong>
               <p className='text-lg text-gray-200 md:text-base'>
                 <FontAwesomeIcon icon={faStar} color='#f4d83a' />{" "}
                 {movie.vote_average.toFixed(1)}
+              </p>
+            </div>
+            <div>
+              <strong className='text-lg md:text-base'>Languages : </strong>
+              <p className='text-lg text-gray-200 md:text-base'>
+                {movie.spoken_languages.map((language: any) => (
+                  <span
+                    className='inline-block bg-gradient-to-r from-orange-600 to-transparent text-white px-3 py-1 rounded-lg mr-2'
+                    key={language.iso_639_1}
+                  >
+                    {language.iso_639_1}
+                  </span>
+                ))}
               </p>
             </div>
           </div>
