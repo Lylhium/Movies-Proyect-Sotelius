@@ -1,18 +1,40 @@
 "use client";
-
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Link from "next/link";
+import { useMediaQuery } from "@react-hook/media-query";
 
 export default function Navbar() {
   const [isSearchOpen, setSearchOpen] = useState(false);
+  const searchInputRef = useRef(null);
+
+  useEffect(() => {
+    const handleDocumentClick = (e: any) => {
+      if (
+        isSearchOpen &&
+        searchInputRef.current &&
+        // @ts-ignore
+        !searchInputRef.current.contains(e.target)
+      ) {
+        setSearchOpen(false);
+      }
+    };
+
+    document.addEventListener("click", handleDocumentClick);
+
+    return () => {
+      document.removeEventListener("click", handleDocumentClick);
+    };
+  }, [isSearchOpen]);
 
   const toggleSearch = () => {
     setSearchOpen(!isSearchOpen);
   };
 
+  const isMobile = useMediaQuery("(max-width: 768px)");
+
   return (
     <div className='navbar bg-base-100 sticky top-0' style={{ zIndex: 1000 }}>
-      <div className='navbar-start'>
+      <div className='navbar-start md:pl-6'>
         <div className='dropdown'>
           <label tabIndex={0} className='btn btn-ghost btn-circle'>
             <svg
@@ -53,14 +75,25 @@ export default function Navbar() {
         </div>
       </div>
       <Link href='/'>
-        <div className='navbar-center'>
-          <a className='btn btn-ghost normal-case text-xl'>
+        <div
+          className={
+            isMobile
+              ? "text-center md:text-left"
+              : "navbar-center text-center md:text-left"
+          }
+        >
+          <a
+            className={
+              isMobile
+                ? "btn btn-ghost normal-case text-md"
+                : "btn btn-ghost normal-case text-xl"
+            }
+          >
             🎬 <a className='text-orange-500'>Sotelius</a> Movies
           </a>
         </div>
       </Link>
       <div className='navbar-end'>
-        {/* Botón de búsqueda */}
         <button className='btn btn-ghost btn-circle' onClick={toggleSearch}>
           <svg
             xmlns='http://www.w3.org/2000/svg'
@@ -77,18 +110,20 @@ export default function Navbar() {
             />
           </svg>
         </button>
-
-        {/* Campo de búsqueda */}
-        {isSearchOpen && (
-          <div className='relative'>
-            <input
-              type='text'
-              placeholder='Buscar...'
-              className='input input-bordered w-48 pl-10 pr-5'
-            />
-          </div>
-        )}
       </div>
+
+      {isSearchOpen && (
+        <div
+          className='absolute top-16 left-0 w-full transition-transform transform translate-y-0'
+          ref={searchInputRef}
+        >
+          <input
+            type='text'
+            placeholder='Buscar...'
+            className='input input-bordered w-full pl-10 pr-5 m-auto'
+          />
+        </div>
+      )}
     </div>
   );
 }
