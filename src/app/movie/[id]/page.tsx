@@ -133,7 +133,7 @@ export default function MoviePage({ params }: any) {
           })`,
           backgroundSize: "cover",
           backgroundPosition: "center",
-          height: "110vh",
+          height: "auto",
         }}
       >
         <MovieDetailsComponent movie={movieDetails} />
