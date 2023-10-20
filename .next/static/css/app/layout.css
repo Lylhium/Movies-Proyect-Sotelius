@@ -821,7 +821,7 @@ html {
   position: relative;
   display: inline-block;
 }
-.dropdown > *:not(summary):focus {
+.dropdown > *:focus {
   outline: 2px solid transparent;
   outline-offset: 2px;
 }
@@ -1199,18 +1199,13 @@ html {
   text-transform: uppercase;
   opacity: 0.5;
 }
-.input input:focus {
-  outline: 2px solid transparent;
-  outline-offset: 2px;
-}
 .input[list]::-webkit-calendar-picker-indicator {
   line-height: 1em;
 }
 .input-bordered {
   --tw-border-opacity: 0.2;
 }
-.input:focus,
-  .input:focus-within {
+.input:focus {
   outline-style: solid;
   outline-width: 2px;
   outline-offset: 2px;
@@ -1543,6 +1538,9 @@ html {
 .absolute {
   position: absolute;
 }
+.relative {
+  position: relative;
+}
 .sticky {
   position: sticky;
 }
@@ -1591,6 +1589,9 @@ html {
 }
 .h-auto {
   height: auto;
+}
+.h-full {
+  height: 100%;
 }
 .min-h-screen {
   min-height: 100vh;
@@ -1746,6 +1747,10 @@ html {
   font-size: 1.25rem;
   line-height: 1.75rem;
 }
+.text-xs {
+  font-size: 0.75rem;
+  line-height: 1rem;
+}
 .font-bold {
   font-weight: 700;
 }
@@ -1885,6 +1890,11 @@ body {
   .md\:text-xl {
     font-size: 1.25rem;
     line-height: 1.75rem;
+  }
+
+  .md\:text-sm {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
   }
 }
 

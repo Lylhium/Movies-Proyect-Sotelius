@@ -21,3 +21,9 @@ export const getMovieDetails = async (id: any) => {
   const data = await res.json();
   return data;
 };
+
+export const getTrailer = async (id: any) => {
+  const res = await fetch(`${BASE_URL}/movie/${id}/videos?api_key=${API_KEY}`);
+  const data = await res.json();
+  return data;
+};
