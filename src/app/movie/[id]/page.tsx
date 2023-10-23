@@ -2,18 +2,35 @@
 import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar, faThumbsUp } from "@fortawesome/free-solid-svg-icons";
-import { getMovieDetails } from "@/app/movie.service";
-import { getTrailer } from "@/app/movie.service";
+import { getMovieDetails, getTrailer, getCredits } from "@/app/movie.service";
 
 const IMG_BASE_URL = "https://www.themoviedb.org/t/p/original";
 
 const MovieDetailsComponent = ({
   movie,
   trailer,
+  credit,
 }: {
   movie: any;
   trailer: any;
+  credit: any;
 }) => {
+  if (!credit || !credit.cast || credit.cast.length === 0) {
+    return null;
+  }
+
+  const castToDisplay = credit.cast.slice(0, 10);
+
+  const colors = [
+    "bg-red-400",
+    "bg-orange-400",
+    "bg-yellow-400",
+    "bg-lime-400",
+    "bg-green-400",
+  ];
+  const starsToDisplay = Math.round(movie.vote_average / 2);
+  const starColor = colors[Math.min(starsToDisplay - 1, 4)];
+
   return (
     <div className='text-white p-4'>
       <div className='md:flex md:items-center'>
@@ -54,6 +71,7 @@ const MovieDetailsComponent = ({
               <p className='text-white'>No hay datos de trailer disponibles</p>
             )}
           </div>
+          <strong className='text-lg md:text-base'>Overview: </strong>
           <p className='text-lg text-gray-200 mb-4 md:text-base md:mb-2'>
             {movie.overview}
           </p>
@@ -80,7 +98,7 @@ const MovieDetailsComponent = ({
             <div>
               <strong className='text-lg md:text-base'>Runtime: </strong>
               <p className='text-lg text-gray-200 md:text-base'>
-                {movie.runtime} minutes
+                {Math.floor(movie.runtime / 60)}h {movie.runtime % 60}m
               </p>
             </div>
             <div>
@@ -89,12 +107,23 @@ const MovieDetailsComponent = ({
                 <FontAwesomeIcon icon={faThumbsUp} /> {movie.vote_count}
               </strong>
             </div>
+
             <div>
               <strong className='text-lg md:text-base'>Vote Average: </strong>
-              <p className='text-lg text-gray-200 md:text-base'>
-                <FontAwesomeIcon icon={faStar} color='#f4d83a' />{" "}
-                {movie.vote_average.toFixed(1)}
-              </p>
+              <div>
+                <div className='rating gap-2' style={{ fontSize: "0.8rem" }}>
+                  {[1, 2, 3, 4, 5].map((index) => (
+                    <input
+                      key={index}
+                      type='radio'
+                      name='rating-3'
+                      className={`mask mask-heart ${
+                        index <= starsToDisplay ? starColor : "bg-gray-800"
+                      }`}
+                    />
+                  ))}
+                </div>
+              </div>
             </div>
 
             <div>
@@ -110,7 +139,52 @@ const MovieDetailsComponent = ({
                 ))}
               </p>
             </div>
+            <div>
+              <strong className='text-lg md:text-base'>Budget: </strong>
+              <p className='text-lg text-gray-200 md:text-base'>
+                {movie.budget.toLocaleString("en-US", {
+                  style: "currency",
+                  currency: "USD",
+                  minimumFractionDigits: 2,
+                })}
+              </p>
+            </div>
+            <div>
+              <strong className='text-lg md:text-base'>Revenue: </strong>
+              <p className='text-lg text-gray-200 md:text-base'>
+                {movie.revenue.toLocaleString("en-US", {
+                  style: "currency",
+                  currency: "USD",
+                  minimumFractionDigits: 2,
+                })}
+              </p>
+            </div>
           </div>
+        </div>
+      </div>
+
+      <div>
+        <h1 className='text-2xl font-semibold mb-4'>People Credits</h1>
+        <div className='flex -mx-2 overflow-x-auto'>
+          {castToDisplay.map((castMember: any) => (
+            <div key={castMember.id} className='w-1/4 px-2'>
+              <div className='rounded-lg shadow-lg'>
+                <a href={`/person/${castMember.id}`}>
+                  <img
+                    src={IMG_BASE_URL + castMember.profile_path}
+                    alt={castMember.name}
+                    className='w-32 h-40 rounded-t-lg'
+                  />
+                </a>
+                <div className='p-2'>
+                  <h2 className='text-lg font-semibold mb-2'>
+                    {castMember.name}
+                  </h2>
+                  <p className='text-sm mb-2'>{castMember.character}</p>
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </div>
@@ -121,6 +195,8 @@ export default function MoviePage({ params }: any) {
   const [movieDetails, setMovieDetails] = useState<any | null>(null);
 
   const [movieTrailer, setMovieTrailer] = useState<any | null>(null);
+
+  const [movieCredits, setMovieCredits] = useState<any | null>(null);
 
   useEffect(() => {
     const fetchMovieDetails = async () => {
@@ -141,8 +217,18 @@ export default function MoviePage({ params }: any) {
       }
     };
 
+    const fetchGetCredits = async () => {
+      try {
+        const credits = await getCredits(params.id);
+        setMovieCredits(credits);
+      } catch (error) {
+        console.error(`error getting movie credits`);
+      }
+    };
+
     fetchMovieDetails();
     fetchGetTrailer();
+    fetchGetCredits();
   }, [params.id]);
 
   if (movieDetails === null) {
@@ -175,7 +261,11 @@ export default function MoviePage({ params }: any) {
           height: "auto",
         }}
       >
-        <MovieDetailsComponent movie={movieDetails} trailer={movieTrailer} />
+        <MovieDetailsComponent
+          movie={movieDetails}
+          trailer={movieTrailer}
+          credit={movieCredits}
+        />
       </div>
     </div>
   );
