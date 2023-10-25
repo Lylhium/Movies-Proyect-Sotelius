@@ -1,8 +1,9 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faStar, faThumbsUp } from "@fortawesome/free-solid-svg-icons";
+import { faThumbsUp } from "@fortawesome/free-solid-svg-icons";
 import { getMovieDetails, getTrailer, getCredits } from "@/app/movie.service";
+import CreditModal from "@/components/creditModal";
 
 const IMG_BASE_URL = "https://www.themoviedb.org/t/p/original";
 
@@ -15,12 +16,6 @@ const MovieDetailsComponent = ({
   trailer: any;
   credit: any;
 }) => {
-  if (!credit || !credit.cast || credit.cast.length === 0) {
-    return null;
-  }
-
-  const castToDisplay = credit.cast.slice(0, 10);
-
   const colors = [
     "bg-red-400",
     "bg-orange-400",
@@ -162,31 +157,7 @@ const MovieDetailsComponent = ({
           </div>
         </div>
       </div>
-
-      <div>
-        <h1 className='text-2xl font-semibold mb-4'>People Credits</h1>
-        <div className='flex -mx-2 overflow-x-auto'>
-          {castToDisplay.map((castMember: any) => (
-            <div key={castMember.id} className='w-1/4 px-2'>
-              <div className='rounded-lg shadow-lg'>
-                <a href={`/person/${castMember.id}`}>
-                  <img
-                    src={IMG_BASE_URL + castMember.profile_path}
-                    alt={castMember.name}
-                    className='w-32 h-40 rounded-t-lg'
-                  />
-                </a>
-                <div className='p-2'>
-                  <h2 className='text-lg font-semibold mb-2'>
-                    {castMember.name}
-                  </h2>
-                  <p className='text-sm mb-2'>{castMember.character}</p>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
+      <CreditModal credit={credit} IMG_BASE_URL={IMG_BASE_URL} />
     </div>
   );
 };
