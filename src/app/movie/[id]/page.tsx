@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faThumbsUp } from "@fortawesome/free-solid-svg-icons";
 import { getMovieDetails, getTrailer, getCredits } from "@/app/movie.service";
 import CreditModal from "@/components/creditModal";
+import Loading from "@/components/loading";
 
 const IMG_BASE_URL = "https://www.themoviedb.org/t/p/original";
 
@@ -203,21 +204,7 @@ export default function MoviePage({ params }: any) {
   }, [params.id]);
 
   if (movieDetails === null) {
-    return (
-      <div
-        style={{
-          height: "100vh",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <span
-          className='loading loading-spinner loading-lg'
-          style={{ transition: "opacity 2s" }}
-        ></span>
-      </div>
-    );
+    return <Loading />;
   }
 
   return (

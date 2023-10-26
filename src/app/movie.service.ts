@@ -33,3 +33,9 @@ export const getCredits = async (id: any) => {
   const data = await res.json();
   return data;
 };
+
+export const getPerson = async (id: any) => {
+  const res = await fetch(`${BASE_URL}/person/${id}?api_key=${API_KEY}`);
+  const data = await res.json();
+  return data;
+};

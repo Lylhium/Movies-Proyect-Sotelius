@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { getTrendingMovies } from "./movie.service";
 import CardUI from "../components/card";
+import Loading from "@/components/loading";
 
 export default function Home() {
   const [movies, setMovies] = useState<any[]>([]);
@@ -23,14 +24,7 @@ export default function Home() {
   }, []);
 
   if (isLoading) {
-    return (
-      <div
-        className=' flex items-center justify-center min-h-screen'
-        style={{ flexDirection: "column" }}
-      >
-        <span className='loading loading-spinner loading-lg'></span>
-      </div>
-    );
+    return <Loading />;
   }
 
   return (
