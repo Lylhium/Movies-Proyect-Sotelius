@@ -26,7 +26,7 @@ const MoviePage = () => {
 
   return (
     <main className='flex flex-col items-center justify-center min-h-screen p-6 bg-base-300'>
-      <h1 className='text-orange-500 text-3xl font-semibold pb-2'>
+      <h1 className='text-orange-500 text-3xl font-semibold pb-4'>
         Discover Movies
       </h1>
       <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4'>
@@ -36,7 +36,7 @@ const MoviePage = () => {
       </div>
       {visibleMovies < movies.length && (
         <button onClick={loadMoreMovies} className='text-orange-500 mt-4'>
-          More Info
+          Load More
         </button>
       )}
     </main>
