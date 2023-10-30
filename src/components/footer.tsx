@@ -7,7 +7,7 @@ function Footer() {
         <div className='text-5xl'>📽️</div>
         <p> made by</p>
         <p className='font-bold text-orange-500'>
-          Ian & Agustín <br />
+          Agustín <br />
         </p>
       </aside>
 
@@ -16,11 +16,6 @@ function Footer() {
         <Link href='https://github.com/Lylhium' legacyBehavior>
           <a className='link link-hover' target='_blank'>
             Agustín Github
-          </a>
-        </Link>
-        <Link href='https://github.com/Ian-Saia' legacyBehavior>
-          <a className='link link-hover' target='_blank'>
-            Ian Github
           </a>
         </Link>
       </nav>

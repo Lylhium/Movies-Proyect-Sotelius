@@ -38,21 +38,21 @@ export default function MovieCard({ movie }: any) {
               onClick={() => setShowFullOverview(false)}
               className='text-orange-500 hover:underline cursor-pointer'
             >
-              Ver menos
+              See less
             </button>
           ) : (
             <button
               onClick={() => setShowFullOverview(true)}
               className='text-orange-500 hover:underline cursor-pointer '
             >
-              Ver más
+              More Info
             </button>
           ))}
       </div>
       <div className='p-4 text-center'>
         <Link href={"/movie/" + movie.id} legacyBehavior>
           <a className='bg-orange-500 hover:bg-orange-700 text-white py-2 px-4 rounded-full inline-block'>
-            Ver más
+            More Info
           </a>
         </Link>
       </div>

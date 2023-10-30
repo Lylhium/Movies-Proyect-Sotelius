@@ -28,7 +28,7 @@ export default function Home() {
   }
 
   return (
-    <main className='flex flex-col items-center justify-center min-h-screen p-6 bg-gray-100'>
+    <main className='flex flex-col items-center justify-center min-h-screen p-6 bg-base-300'>
       <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4'>
         {movies.map((movie) => (
           <CardUI key={movie.id} movie={movie}></CardUI>

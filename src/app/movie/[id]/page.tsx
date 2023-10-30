@@ -208,7 +208,7 @@ export default function MoviePage({ params }: any) {
   }
 
   return (
-    <div className='bg-black'>
+    <div className='bg-base-300'>
       <div
         style={{
           backgroundImage: `linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(${

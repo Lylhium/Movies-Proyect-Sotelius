@@ -5,7 +5,7 @@ import Loading from "@/components/loading";
 
 const PersonComponentPage = ({ params }: any) => {
   const [personDetails, setPersonDetails] = useState<any | null>(null);
-  const fallbackImage = "../src/img/images.png"; // Ruta de tu imagen de relleno
+  const fallbackImage = "../src/img/images.png";
 
   useEffect(() => {
     const fetchPersonDetails = async () => {
@@ -28,7 +28,7 @@ const PersonComponentPage = ({ params }: any) => {
   const genderString = gender?.toString() ?? "Unknown";
 
   return (
-    <div className='p-4 flex flex-col md:flex-row items-center'>
+    <div className='p-4 flex flex-col md:flex-row items-center bg-base-300 py-10'>
       {personDetails ? (
         <>
           <div className='w-full md:w-1/3 pr-6 mb-4 md:mb-0'>

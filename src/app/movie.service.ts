@@ -39,3 +39,17 @@ export const getPerson = async (id: any) => {
   const data = await res.json();
   return data;
 };
+
+export const getDiscoverMovies = async () => {
+  const res = await fetch(`${BASE_URL}/discover/movie?api_key=${API_KEY}`);
+  const data = await res.json();
+  return data.results;
+};
+
+export const getSearchMovies = async (query: any) => {
+  const res = await fetch(
+    `${BASE_URL}/search/movie?query=${query}&api_key=${API_KEY}`
+  );
+  const data = await res.json();
+  return data.results;
+};

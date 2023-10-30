@@ -5,6 +5,7 @@ import { useMediaQuery } from "@react-hook/media-query";
 
 export default function Navbar() {
   const [isSearchOpen, setSearchOpen] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
   const searchInputRef = useRef(null);
 
   useEffect(() => {
@@ -12,7 +13,7 @@ export default function Navbar() {
       if (
         isSearchOpen &&
         searchInputRef.current &&
-        // @ts-ignore
+        //@ts-ignore
         !searchInputRef.current.contains(e.target)
       ) {
         setSearchOpen(false);
@@ -61,7 +62,7 @@ export default function Navbar() {
                 <a>Homepage</a>
               </li>
             </Link>
-            <Link href='/movies'>
+            <Link href='/movie'>
               <li>
                 <a>Movies</a>
               </li>
@@ -111,7 +112,6 @@ export default function Navbar() {
           </svg>
         </button>
       </div>
-
       {isSearchOpen && (
         <div
           className='absolute top-16 left-0 w-full transition-transform transform translate-y-0'
@@ -121,7 +121,17 @@ export default function Navbar() {
             type='text'
             placeholder='Buscar...'
             className='input input-bordered w-full pl-10 pr-5 m-auto'
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
           />
+          <Link
+            legacyBehavior
+            href={`/search/${encodeURIComponent(searchTerm)}`}
+          >
+            <button className='btn bg-orange-500 text-white'>
+              <a>Buscar</a>
+            </button>
+          </Link>
         </div>
       )}
     </div>
