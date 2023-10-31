@@ -119,7 +119,7 @@ export default function Navbar() {
         >
           <input
             type='text'
-            placeholder='Buscar...'
+            placeholder='Search...'
             className='input input-bordered w-full pl-10 pr-5 m-auto'
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
@@ -129,7 +129,7 @@ export default function Navbar() {
             href={`/search/${encodeURIComponent(searchTerm)}`}
           >
             <button className='btn bg-orange-500 text-white'>
-              <a>Buscar</a>
+              <a>Search</a>
             </button>
           </Link>
         </div>
