@@ -5,14 +5,12 @@ function Footer() {
     <footer className='footer p-10 bg-base-200 text-base-content'>
       <aside>
         <div className='text-5xl'>📽️</div>
-        <p> made by</p>
-        <p className='font-bold text-orange-500'>
-          Agustín <br />
-        </p>
+        <p>made by</p>
+        <div className='font-bold text-orange-500'>Agustín Pfarherr</div>
       </aside>
 
       <nav>
-        <header className='footer-title'>About us</header>
+        <header className='footer-title'>About Me</header>
         <Link href='https://github.com/Lylhium' legacyBehavior>
           <a className='link link-hover' target='_blank'>
             Agustín Github

@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { getDiscoverMovies } from "../movie.service";
+import { getDiscoverMovies } from "../../../utils/movie.service";
 import CardUI from "../../components/card";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import Loading from "../../components/loading";

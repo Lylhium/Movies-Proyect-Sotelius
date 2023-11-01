@@ -2,9 +2,13 @@
 import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faThumbsUp } from "@fortawesome/free-solid-svg-icons";
-import { getMovieDetails, getTrailer, getCredits } from "@/app/movie.service";
-import CreditModal from "@/components/creditModal";
+import {
+  getMovieDetails,
+  getTrailer,
+  getCredits,
+} from "../../../../utils/movie.service";
 import Loading from "@/components/loading";
+import { BilledCastMem } from "@/components/billed-cast-mem";
 
 const IMG_BASE_URL = "https://www.themoviedb.org/t/p/original";
 
@@ -141,7 +145,7 @@ const MovieDetailsComponent = ({
                 {movie.budget.toLocaleString("en-US", {
                   style: "currency",
                   currency: "USD",
-                  minimumFractionDigits: 2,
+                  minimumFractionDigits: 0,
                 })}
               </p>
             </div>
@@ -151,14 +155,14 @@ const MovieDetailsComponent = ({
                 {movie.revenue.toLocaleString("en-US", {
                   style: "currency",
                   currency: "USD",
-                  minimumFractionDigits: 2,
+                  minimumFractionDigits: 0,
                 })}
               </p>
             </div>
           </div>
         </div>
       </div>
-      <CreditModal credit={credit} IMG_BASE_URL={IMG_BASE_URL} />
+      <BilledCastMem credit={credit} IMG_BASE_URL={IMG_BASE_URL} />
     </div>
   );
 };

@@ -69,7 +69,7 @@ export default function Navbar() {
             </Link>
             <Link href='/about'>
               <li>
-                <a>About us</a>
+                <a>About me</a>
               </li>
             </Link>
           </ul>

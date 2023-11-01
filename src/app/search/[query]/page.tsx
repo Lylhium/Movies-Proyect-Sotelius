@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { getSearchMovies } from "../../movie.service";
+import { getSearchMovies } from "../../../../utils/movie.service";
 import CardUI from "../../../components/card";
 import Loading from "../../../components/loading";
 

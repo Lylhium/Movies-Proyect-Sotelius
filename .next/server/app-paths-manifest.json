@@ -1,7 +1,6 @@
 {
-  "/movie/page": "app/movie/page.js",
-  "/search/[query]/page": "app/search/[query]/page.js",
-  "/page": "app/page.js",
+  "/not-found": "app/not-found.js",
   "/movie/[id]/page": "app/movie/[id]/page.js",
+  "/page": "app/page.js",
   "/person/[id]/page": "app/person/[id]/page.js"
 }

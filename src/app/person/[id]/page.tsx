@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { getPerson } from "@/app/movie.service";
+import { getPerson } from "../../../../utils/movie.service";
 import Loading from "@/components/loading";
 
 const PersonComponentPage = ({ params }: any) => {
