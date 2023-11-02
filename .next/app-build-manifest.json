@@ -16,15 +16,15 @@
       "static/chunks/main-app.js",
       "static/chunks/app/movie/[id]/page.js"
     ],
-    "/person/[id]/page": [
+    "/search/[query]/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/person/[id]/page.js"
+      "static/chunks/app/search/[query]/page.js"
     ],
-    "/not-found": [
+    "/movie/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/not-found.js"
+      "static/chunks/app/movie/page.js"
     ]
   }
 }

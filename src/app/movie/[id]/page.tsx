@@ -104,10 +104,10 @@ const MovieDetailsComponent = ({
             <div>
               <strong className='text-lg md:text-base'>Votes: </strong>
               <strong className='text-lg md:text-base'>
-                <FontAwesomeIcon icon={faThumbsUp} /> {movie.vote_count}
+                <FontAwesomeIcon icon={faThumbsUp} color='orange' />{" "}
+                {movie.vote_count}
               </strong>
             </div>
-
             <div>
               <strong className='text-lg md:text-base'>Vote Average: </strong>
               <div>
