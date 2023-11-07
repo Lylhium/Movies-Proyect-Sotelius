@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { getTrendingMovies } from "../../utils/movie.service";
 import CardUI from "../components/card";
 import Loading from "@/components/loading";
-import { Carrousel } from "@/components/carrousel";
+import MovieCarousel from "@/components/carrousel";
 
 export default function Home() {
   const [movies, setMovies] = useState<any[]>([]);
@@ -31,7 +31,7 @@ export default function Home() {
 
   return (
     <main className='flex flex-col items-center justify-center min-h-screen p-6 bg-base-300'>
-      <div className='w-[500px]'></div>
+      <div></div>
       <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4'>
         {movies.map((movie) => (
           <CardUI key={movie.id} movie={movie}></CardUI>

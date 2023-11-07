@@ -12,8 +12,8 @@ const CreditModal = ({
     return null;
   }
 
-  const castToDisplay = credit.cast.slice(0, 9);
-  const fallbackImage = "./img/images.png"; // Ruta de tu imagen de relleno
+  const castToDisplay = credit.cast.slice(0, 11);
+  const fallbackImage = "./img/images.png";
 
   return (
     <div>
@@ -43,10 +43,7 @@ const CreditModal = ({
                   className='bg-base-100 text-base-content'
                   title={castMember.name}
                 >
-                  {castMember.name
-                    .split(" ")
-                    .slice(0, 2) // Mostrar el nombre y el primer apellido
-                    .join(" ")}
+                  {castMember.name.split(" ").slice(0, 2).join(" ")}
                 </div>
                 <p className='text-sm text-gray-500 '>
                   as {castMember.character}
