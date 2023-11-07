@@ -52,11 +52,12 @@ export default function MovieCard({ movie }: any) {
         <Link href={"/movie/" + movie.id}>
           <div className='text-lg font-semibold mb-2'>
             {movie.title}{" "}
-            <a className='text-gray-400 text-sm'>
+            <span className='text-gray-400 text-sm'>
               ({new Date(movie.release_date).getFullYear()})
-            </a>
+            </span>
           </div>
         </Link>
+
         <div className='flex items-center pb-2'>
           <span className='mr-1'>
             <FaStar color='orange' />

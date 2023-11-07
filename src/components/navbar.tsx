@@ -31,7 +31,7 @@ export default function Navbar() {
     setSearchOpen(!isSearchOpen);
   };
 
-  const isMobile = useMediaQuery("(max-width: 768px)");
+  const isMobile = useMediaQuery("(max-width: 768px)") || false;
 
   return (
     <div className='navbar bg-base-100 sticky top-0' style={{ zIndex: 1000 }}>
@@ -57,43 +57,51 @@ export default function Navbar() {
             tabIndex={0}
             className='menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52'
           >
-            <Link href='/'>
-              <li>
+            <li>
+              <Link href='/' legacyBehavior>
                 <a>Homepage</a>
-              </li>
-            </Link>
-            <Link href='/movie'>
-              <li>
+              </Link>
+            </li>
+            <li>
+              <Link href='/movie' legacyBehavior>
                 <a>Movies</a>
-              </li>
-            </Link>
-            <Link href='/about'>
-              <li>
+              </Link>
+            </li>
+            <li>
+              <Link href='/about' legacyBehavior>
                 <a>About me</a>
-              </li>
-            </Link>
+              </Link>
+            </li>
           </ul>
         </div>
       </div>
-      <Link href='/'>
+      <div
+        className={
+          isMobile
+            ? "navbar-center text-center md:text-left"
+            : "navbar-center text-center md:text-left"
+        }
+      >
         <div
           className={
             isMobile
-              ? "text-center md:text-left"
+              ? "navbar-center text-center md:text-left"
               : "navbar-center text-center md:text-left"
           }
         >
-          <a
-            className={
-              isMobile
-                ? "btn btn-ghost normal-case text-md"
-                : "btn btn-ghost normal-case text-xl"
-            }
-          >
-            🎬 <a className='text-orange-500'>Sotelius</a> Movies
-          </a>
+          <Link href='/' legacyBehavior>
+            <a
+              className={
+                isMobile
+                  ? "btn btn-ghost normal-case text-lg"
+                  : "btn btn-ghost normal-case text-lg"
+              }
+            >
+              🎬 <span className='text-orange-500'>Sotelius</span> Movies
+            </a>
+          </Link>
         </div>
-      </Link>
+      </div>
       <div className='navbar-end'>
         <button className='btn btn-ghost btn-circle' onClick={toggleSearch}>
           <svg
