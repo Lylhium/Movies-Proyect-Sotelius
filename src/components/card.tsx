@@ -5,7 +5,7 @@ import { TrailerModal } from "./trailerModal";
 import { getTrailer } from "../../utils/movie.service";
 
 export default function MovieCard({ movie }: any) {
-  const IMG_BASE_URL = "https://www.themoviedb.org/t/p/w220_and_h330_face";
+  const IMG_BASE_URL = "https://www.themoviedb.org/t/p/original";
   const maxOverviewLength = 150;
   const [showFullOverview, setShowFullOverview] = useState(false);
   const [isTrailerOpen, setIsTrailerOpen] = useState(false);

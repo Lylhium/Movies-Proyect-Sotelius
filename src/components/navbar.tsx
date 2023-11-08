@@ -6,6 +6,8 @@ import { useMediaQuery } from "@react-hook/media-query";
 export default function Navbar() {
   const [isSearchOpen, setSearchOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
+  const [isAnimating, setAnimating] = useState(false);
+
   const searchInputRef = useRef(null);
 
   useEffect(() => {
@@ -28,7 +30,9 @@ export default function Navbar() {
   }, [isSearchOpen]);
 
   const toggleSearch = () => {
+    setSearchTerm("");
     setSearchOpen(!isSearchOpen);
+    setAnimating(true);
   };
 
   const isMobile = useMediaQuery("(max-width: 768px)") || false;
@@ -127,11 +131,15 @@ export default function Navbar() {
         >
           <input
             type='text'
-            placeholder='Search...'
-            className='input input-bordered w-full pl-10 pr-5 m-auto'
+            placeholder='Search on Sotelius Movies'
+            className={`input input-bordered w-full pl-10 pr-5 m-auto ${
+              isAnimating ? "animate" : ""
+            } text-center`}
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
+            onAnimationEnd={() => setAnimating(false)}
           />
+
           <Link
             legacyBehavior
             href={`/search/${encodeURIComponent(searchTerm)}`}

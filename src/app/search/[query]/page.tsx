@@ -22,13 +22,14 @@ const SearchMovie = ({ params }: any) => {
     fetchSearchMovies();
   }, [params]);
 
+  const decodedQuery = decodeURIComponent(params.query);
+
   return (
     <main className='flex flex-col items-center justify-center min-h-screen p-6 bg-base-300'>
-      <div className='py-2'> Movies with the name of:</div>
+      <div className='py-2'>Movies with the title</div>
       <div className='text-orange-500 text-3xl font-semibold pb-4 '>
-        {params.query}
+        « {decodedQuery} »
       </div>
-
       {isLoading ? (
         <Loading />
       ) : (

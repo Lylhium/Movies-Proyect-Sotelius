@@ -19,7 +19,7 @@ export default function About() {
           </a>
         </Link>
       </h1>
-      <div className='pt-5'> My Github: </div>
+      <div className='pt-5'> Personal Github: </div>
       <h1 className='justify-center text-orange-500 semi-bold pt-5 text-lg'>
         <Link href='https://github.com/Lylhium' legacyBehavior>
           <a className='link link-hover' target='_blank'>
