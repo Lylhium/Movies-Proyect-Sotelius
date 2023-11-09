@@ -34,7 +34,7 @@ export default function MovieCarousel({ movies }: any) {
                 <img
                   src={`${IMG_BASE_URL}${movie.poster_path}`}
                   alt={movie.title}
-                  className='object-cover rounded-lg sm:w-96 sm:h-96 md:w-80 md:h-80 lg:w-96 lg:h-96 xl:w-96 xl:h-96'
+                  className='object-cover rounded-lg '
                 />
               </div>
             </Link>
