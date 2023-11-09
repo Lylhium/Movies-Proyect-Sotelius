@@ -15,8 +15,10 @@ export function BilledCastMem({
   const fallbackImage = "utils/img/fallbackimg.jpg";
 
   return (
-    <div className='pt-4'>
-      <h2 className='font-semibold text-2xl mb-4'>Top Billed Cast</h2>
+    <div className='pt-4 pl-4'>
+      <h2 className='text-3xl font-extrabold tracking-tight lg:text-3xl lg:leading-[3.5rem] text-orange-500'>
+        Top Billed Cast
+      </h2>
       <div className='max-w-full mx-auto p-4 rounded-lg overflow-x-auto'>
         <div className='flex space-x-4 justify-start'>
           {castToDisplay.map((castMember: any) => (

@@ -6,20 +6,23 @@ import {
   getMovieDetails,
   getTrailer,
   getCredits,
+  getMovieReviews,
 } from "../../../../utils/movie.service";
 import Loading from "@/components/loading";
 import { BilledCastMem } from "@/components/billed-cast-mem";
-
+import ReviewSection from "@/components/review-section";
 const IMG_BASE_URL = "https://www.themoviedb.org/t/p/original";
 
 const MovieDetailsComponent = ({
   movie,
   trailer,
   credit,
+  reviews,
 }: {
   movie: any;
   trailer: any;
   credit: any;
+  reviews: any;
 }) => {
   const colors = [
     "bg-red-400",
@@ -163,6 +166,12 @@ const MovieDetailsComponent = ({
         </div>
       </div>
       <BilledCastMem credit={credit} IMG_BASE_URL={IMG_BASE_URL} />
+
+      {reviews !== null ? (
+        <ReviewSection reviews={reviews} />
+      ) : (
+        <p>Loading reviews...</p>
+      )}
     </div>
   );
 };
@@ -173,6 +182,8 @@ export default function MoviePage({ params }: any) {
   const [movieTrailer, setMovieTrailer] = useState<any | null>(null);
 
   const [movieCredits, setMovieCredits] = useState<any | null>(null);
+
+  const [movieReviews, setMovieReviews] = useState<any | null>(null);
 
   useEffect(() => {
     const fetchMovieDetails = async () => {
@@ -202,9 +213,26 @@ export default function MoviePage({ params }: any) {
       }
     };
 
+    const fetchGetReviews = async () => {
+      try {
+        const reviews = await getMovieReviews(params.id);
+        if (Array.isArray(reviews)) {
+          setMovieReviews(reviews);
+          console.log(reviews);
+        } else {
+          console.error("Reviews data is not in the expected format:", reviews);
+          setMovieReviews([]);
+        }
+      } catch (error) {
+        console.error("Error getting movie reviews:", error);
+        setMovieReviews([]);
+      }
+    };
+
     fetchMovieDetails();
     fetchGetTrailer();
     fetchGetCredits();
+    fetchGetReviews();
   }, [params.id]);
 
   if (movieDetails === null) {
@@ -227,6 +255,7 @@ export default function MoviePage({ params }: any) {
           movie={movieDetails}
           trailer={movieTrailer}
           credit={movieCredits}
+          reviews={movieReviews}
         />
       </div>
     </div>

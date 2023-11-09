@@ -54,3 +54,12 @@ export const getSearchMovies = async (query: any) => {
   const data = await res.json();
   return data.results;
 };
+export const getMovieReviews = async (id: any) => {
+  const res = await fetch(
+    `${BASE_URL}/movie/${id}/reviews?language=en-US&page=1&api_key=${API_KEY}`
+  );
+  const data = await res.json();
+
+  // Assuming the data structure includes a 'results' property containing the reviews
+  return data.results || [];
+};
