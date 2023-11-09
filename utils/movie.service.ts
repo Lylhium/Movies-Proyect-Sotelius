@@ -1,4 +1,4 @@
-const API_KEY = process.env.NEXT_PUBLIC_API_KEY;
+const API_KEY = "77f3cadb497722d6b57cf23f4e4c2032";
 const BASE_URL = "https://api.themoviedb.org/3";
 
 export const getTrendingMovies = async () => {
